@@ -1,3 +1,7 @@
+import uvloop
+
+uvloop.install()
+
 import asyncio
 from pyrogram import Client, errors
 from pyrogram.enums import ChatMemberStatus, ParseMode
