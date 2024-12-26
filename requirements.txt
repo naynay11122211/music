@@ -13,7 +13,6 @@ pillow==9.5.0
 psutil
 httpx==0.27.2
 py-tgcalls==0.9.7
-uvloop
 pykeyboard
 pyrofork
 python-dotenv
