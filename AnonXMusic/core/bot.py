@@ -5,7 +5,6 @@ from pyrogram import Client, errors
 from pyrogram.enums import ChatMemberStatus, ParseMode
 
 import config  # Assuming you have a config.py file
-from utils.logging import LOGGER   # Import logging if your project uses this
 
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
