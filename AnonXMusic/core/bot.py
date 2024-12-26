@@ -5,7 +5,6 @@ from pyrogram import Client, errors
 from pyrogram.enums import ChatMemberStatus, ParseMode
 
 import config  # Assuming you have a config.py file
-from core.streaming import stream_audio_data  # Import our network logic
 from utils.logging import LOGGER   # Import logging if your project uses this
 
 
