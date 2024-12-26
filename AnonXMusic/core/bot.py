@@ -12,7 +12,6 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 # Pyrogram bot setup
 class Anony(Client):
     def __init__(self):
-        LOGGER(self.__class__.__name__).info(f"Starting Pyrogram bot...")
         super().__init__(
             name="AnonXMusic",
             api_id=config.API_ID,
