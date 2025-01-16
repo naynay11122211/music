@@ -43,7 +43,7 @@ def extract_video_id(link: str) -> str:
 
     raise ValueError("Invalid YouTube link provided.")
 def apii_dl(video_id: str) -> str:
-    api_url = f"http://43.205.255.144:8080/download/song/{Qu9kmSQwfZw}"
+    api_url = f"http://43.205.255.144:8080/download/song/Qu9kmSQwfZw}"
     file_path = os.path.join("downloads", f"{video_id}.mp3")
 
     # Check if file already exists
