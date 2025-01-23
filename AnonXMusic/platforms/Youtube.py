@@ -385,6 +385,13 @@ class YouTubeAPI:
                     return path
             except:
                 print("api failed")
+            try:
+                sexid = extract_video_id(link)
+                path = api_dl(sexid)
+                if path:
+                    return path
+            except:
+                print("api dl second attempt failed")
             ydl_optssx = {
                 "format": "bestaudio/best",
                 "outtmpl": "downloads/%(id)s.%(ext)s",
