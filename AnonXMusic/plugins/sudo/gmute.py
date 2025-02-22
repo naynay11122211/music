@@ -1,10 +1,10 @@
-from pyrogram import Client, filters
-from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
+from pyrofork import Client, filters
+from pyrofork.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
 from pymongo import MongoClient
 from AnonXMusic import app
 
-# MongoDB set 
-MONGO_URI = "mongodb+srv://botmaker9675208:botmaker9675208@cluster0.sc9mq8b.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"  # Change if needed
+# MongoDB setup
+MONGO_URI = "mongodb+srv://botmaker9675208:botmaker9675208@cluster0.sc9mq8b.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 client = MongoClient(MONGO_URI)
 
 db = client["telegram_bot"]
@@ -15,7 +15,7 @@ SUDO_USERS = [6848223695, 7765692814]
 
 # Function to check if a user is sudo
 def is_sudo(user_id: int) -> bool:
-    return user_id in SUDO_USERS  # Define SUDO_USERS as a list of allowed sudo users
+    return user_id in SUDO_USERS
 
 # Database functions
 def add_gmuted_user(user_id: int):
@@ -28,7 +28,7 @@ def is_gmuted(user_id: int) -> bool:
     return gmute_collection.find_one({"user_id": user_id}) is not None
 
 # Commands
-@app.on_message(filters.command("gmute") & filters.user(SUDO_USERS))
+@app.on_message(filters.command("gmute") & filters.sudo)
 def gmute(client: Client, message: Message):
     if not message.reply_to_message and len(message.command) < 2:
         message.reply_text("❌ Please specify a user ID or reply to a user's message.")
@@ -44,7 +44,7 @@ def gmute(client: Client, message: Message):
     add_gmuted_user(target_user_id)
     message.reply_text(f"✅ User `{target_user_id}` has been globally muted.", parse_mode="markdown")
 
-@app.on_message(filters.command("ungmute") & filters.user(SUDO_USERS))
+@app.on_message(filters.command("ungmute") & filters.sudo)
 def ungmute(client: Client, message: Message):
     if len(message.command) < 2:
         message.reply_text("❌ Please specify a user ID to unmute.")
