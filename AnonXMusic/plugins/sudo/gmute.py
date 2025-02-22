@@ -2,6 +2,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
 from pymongo import MongoClient
 from AnonXMusic.misc import SUDOERS
+from AnonXMusic import app
 
 # MongoDB setup
 gmute_collection = MongoClient()["your_database"]["gmute_collection"]
@@ -21,7 +22,7 @@ def is_gmuted(user_id: int) -> bool:
     return gmute_collection.find_one({"user_id": user_id}) is not None
 
 # Commands
-@Client.on_message(filters.command("gmute") & filters.user(SUDO_USERS))
+@.on_message(filters.command("gmute") & filters.user(SUDO_USERS))
 def gmute(client: Client, message: Message):
     if not message.reply_to_message and len(message.command) < 2:
         message.reply_text("❌ Please specify a user ID or reply to a user's message.")
