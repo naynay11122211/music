@@ -3,9 +3,9 @@ from pyrogram import Client
 from pyrogram.types import Message
 from pyrogram import filters
 from pyrogram.types import(InlineKeyboardButton, InlineKeyboardMarkup, InputMediaPhoto, InputMediaVideo, Message)
-from Grabber import user_collection, app
+from AnonXMusic import app
 
-JOINLOGS = "-1001879440964"
+JOINLOGS = "-1002144355688"
 
 async def lul_message(chat_id: int, message: str):
     await app.send_message(chat_id=chat_id, text=message)
