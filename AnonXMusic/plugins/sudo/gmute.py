@@ -1,11 +1,13 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
 from pymongo import MongoClient
-from AnonXMusic.misc import SUDOERS
 from AnonXMusic import app
 
 # MongoDB setup
 gmute_collection = MongoClient()["mongodb+srv://botmaker9675208:botmaker9675208@cluster0.sc9mq8b.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"]["gmute_collection"]
+
+# Sudo Users
+SUDO_USERS = [6848223695, 7765692814]
 
 # Function to check if a user is sudo
 def is_sudo(user_id: int) -> bool:
