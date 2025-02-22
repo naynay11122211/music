@@ -5,7 +5,7 @@ from AnonXMusic.misc import SUDOERS
 from AnonXMusic import app
 
 # MongoDB setup
-gmute_collection = MongoClient()["your_database"]["gmute_collection"]
+gmute_collection = MongoClient()["mongodb+srv://botmaker9675208:botmaker9675208@cluster0.sc9mq8b.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"]["gmute_collection"]
 
 # Function to check if a user is sudo
 def is_sudo(user_id: int) -> bool:
@@ -22,7 +22,7 @@ def is_gmuted(user_id: int) -> bool:
     return gmute_collection.find_one({"user_id": user_id}) is not None
 
 # Commands
-@.on_message(filters.command("gmute") & filters.user(SUDO_USERS))
+@app.on_message(filters.command("gmute") & filters.user(SUDO_USERS))
 def gmute(client: Client, message: Message):
     if not message.reply_to_message and len(message.command) < 2:
         message.reply_text("❌ Please specify a user ID or reply to a user's message.")
@@ -38,7 +38,7 @@ def gmute(client: Client, message: Message):
     add_gmuted_user(target_user_id)
     message.reply_text(f"✅ User `{target_user_id}` has been globally muted.", parse_mode="markdown")
 
-@Client.on_message(filters.command("ungmute") & filters.user(SUDO_USERS))
+@app.on_message(filters.command("ungmute") & filters.user(SUDO_USERS))
 def ungmute(client: Client, message: Message):
     if len(message.command) < 2:
         message.reply_text("❌ Please specify a user ID to unmute.")
@@ -57,7 +57,7 @@ def ungmute(client: Client, message: Message):
     remove_gmuted_user(target_user_id)
     message.reply_text(f"✅ User `{target_user_id}` has been globally unmuted.", parse_mode="markdown")
 
-@Client.on_message(filters.text & filters.group)
+@app.on_message(filters.text & filters.group)
 def delete_gmuted_messages(client: Client, message: Message):
     user = message.from_user
     if not user:
